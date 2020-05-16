@@ -1,9 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Event" representedClassName="Event" codeGenerationType="class">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Assessment" representedClassName="Assessment" syncable="YES">
+        <attribute name="addToCalendar" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="assesstmentName" optional="YES" attributeType="String"/>
+        <attribute name="calendarIdentifier" optional="YES" attributeType="String"/>
+        <attribute name="dueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="level" optional="YES" attributeType="String"/>
+        <attribute name="mark" optional="YES" attributeType="String"/>
+        <attribute name="moduleName" optional="YES" attributeType="String"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="value" optional="YES" attributeType="String"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="assessment" inverseEntity="Task"/>
+    </entity>
+    <entity name="Event" representedClassName="Event">
         <attribute name="timestamp" optional="YES" attributeType="Date"/>
+        <userInfo/>
+    </entity>
+    <entity name="Task" representedClassName="Task" syncable="YES">
+        <attribute name="addToCalendar" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="calendarIdentifier" optional="YES" attributeType="String"/>
+        <attribute name="dueDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="progress" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="taskName" optional="YES" attributeType="String"/>
+        <relationship name="assessment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assessment" inverseName="tasks" inverseEntity="Assessment"/>
     </entity>
     <elements>
-        <element name="Event" positionX="261" positionY="189" width="128" height="60"/>
+        <element name="Assessment" positionX="226.36328125" positionY="173.4453125" width="128" height="208"/>
+        <element name="Event" positionX="121.9296875" positionY="46.19921875" width="128" height="28"/>
+        <element name="Task" positionX="492.1875" positionY="181.1171875" width="128" height="163"/>
     </elements>
 </model>

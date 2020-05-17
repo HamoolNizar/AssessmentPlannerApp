@@ -123,7 +123,7 @@ class AddTaskViewController: UIViewController, UIPopoverPresentationControllerDe
         dueDateLbl.text = formatter.formatDate(sender.date)
         
         // Set start date maximum to one minute before the end date
-//        startDatePicker.maximumDate = sender.date.addingTimeInterval(-TimeInterval(3600.00))
+        startDatePicker.maximumDate = sender.date.addingTimeInterval(-TimeInterval(3600.00))
 
     }
     

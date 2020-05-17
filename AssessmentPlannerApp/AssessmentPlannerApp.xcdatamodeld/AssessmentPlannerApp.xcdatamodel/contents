@@ -11,7 +11,7 @@
         <attribute name="notes" optional="YES" attributeType="String"/>
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="value" optional="YES" attributeType="String"/>
-        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="assessment" inverseEntity="Task"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Task" inverseName="assessment" inverseEntity="Task"/>
     </entity>
     <entity name="Event" representedClassName="Event">
         <attribute name="timestamp" optional="YES" attributeType="Date"/>
@@ -28,7 +28,7 @@
         <relationship name="assessment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assessment" inverseName="tasks" inverseEntity="Assessment"/>
     </entity>
     <elements>
-        <element name="Assessment" positionX="226.36328125" positionY="173.4453125" width="128" height="208"/>
+        <element name="Assessment" positionX="226.36328125" positionY="173.4453125" width="128" height="28"/>
         <element name="Event" positionX="121.9296875" positionY="46.19921875" width="128" height="28"/>
         <element name="Task" positionX="492.1875" positionY="181.1171875" width="128" height="163"/>
     </elements>

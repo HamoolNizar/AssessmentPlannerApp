@@ -53,5 +53,5 @@ class AssessmentTableViewCell: UITableViewCell {
 }
 
 protocol AssessmentTableViewCellDelegate {
-    func customCell(cell: AssessmentTableViewCell, sender button: UIButton, data data: String)
+    func customCell(cell: AssessmentTableViewCell, sender button: UIButton, content data: String)
 }

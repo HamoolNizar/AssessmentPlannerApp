@@ -61,13 +61,13 @@ class DetailViewController: UIViewController, NSFetchedResultsControllerDelegate
         //        self.taskTableView.dataSource = self
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        
         self.managedObjectContext = appDelegate.persistentContainer.viewContext
+        
+//        managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
         
         // initializing the custom cell
         let nibName = UINib(nibName: "TaskTableViewCell", bundle: nil)
         taskTableView.register(nibName, forCellReuseIdentifier: "TaskCell")
-        print("viewDidLoad")
         
     }
     
@@ -79,7 +79,6 @@ class DetailViewController: UIViewController, NSFetchedResultsControllerDelegate
         if taskTableView.hasRowAtIndexPath(indexPath: indexPath as NSIndexPath) {
             taskTableView.selectRow(at: indexPath, animated: true, scrollPosition: .bottom)
         }
-        print("viewWillAppear")
     }
     
 //    @objc

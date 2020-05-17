@@ -19,6 +19,7 @@
 		986001E9246B83C6005B8D61 /* Event+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986001E7246B83C6005B8D61 /* Event+CoreDataClass.swift */; };
 		986001EA246B83C6005B8D61 /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986001E8246B83C6005B8D61 /* Event+CoreDataProperties.swift */; };
 		986001ED246B94D7005B8D61 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986001EC246B94D7005B8D61 /* UITableView+Extension.swift */; };
+		98827F81247084AB002641C9 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98827F80247084AB002641C9 /* Validation.swift */; };
 		988F776A246A8F2500DE3A12 /* AssessmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988F7769246A8F2500DE3A12 /* AssessmentTableViewCell.swift */; };
 		988F776C246A8F6100DE3A12 /* AssessmentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 988F776B246A8F6100DE3A12 /* AssessmentTableViewCell.xib */; };
 		988F776E246A921800DE3A12 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988F776D246A921800DE3A12 /* TaskTableViewCell.swift */; };
@@ -49,6 +50,7 @@
 		986001E7246B83C6005B8D61 /* Event+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataClass.swift"; sourceTree = "<group>"; };
 		986001E8246B83C6005B8D61 /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		986001EC246B94D7005B8D61 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		98827F80247084AB002641C9 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		988F7769246A8F2500DE3A12 /* AssessmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentTableViewCell.swift; sourceTree = "<group>"; };
 		988F776B246A8F6100DE3A12 /* AssessmentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssessmentTableViewCell.xib; sourceTree = "<group>"; };
 		988F776D246A921800DE3A12 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				988F7772246A9AC800DE3A12 /* Calculations.swift */,
 				988F7774246A9AE600DE3A12 /* Formatter.swift */,
 				988F7776246A9AF800DE3A12 /* Colours.swift */,
+				98827F80247084AB002641C9 /* Validation.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				980238A8246A21BB002DDE12 /* CircularProgressBar.swift in Sources */,
 				98E997D324689C0B00E438D5 /* DetailViewController.swift in Sources */,
 				980238902469566B002DDE12 /* AddAssessmentViewController.swift in Sources */,
+				98827F81247084AB002641C9 /* Validation.swift in Sources */,
 				9802389424695A17002DDE12 /* NotesViewController.swift in Sources */,
 				98E997CA24689C0B00E438D5 /* AppDelegate.swift in Sources */,
 				986001E5246B81BF005B8D61 /* Task+CoreDataClass.swift in Sources */,

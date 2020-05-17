@@ -19,6 +19,7 @@ class AddAssessmentViewController: UIViewController, UIPopoverPresentationContro
     let now = Date();
     
     let formatter: Formatter = Formatter()
+    let validation: Validation = Validation()
     
     @IBOutlet weak var moduleNameTxtFld: UITextField!
     @IBOutlet weak var assessmentNameTxtFld: UITextField!
@@ -76,7 +77,7 @@ class AddAssessmentViewController: UIViewController, UIPopoverPresentationContro
                 assesstmentName.text = editingAssessment?.assesstmentName
             }
             if let level = levelSegementedControl {
-                level.setEnabled(true, forSegmentAt: getEditingLevel(segmentIndex: editingAssessment?.level ?? "0"))
+                level.selectedSegmentIndex = getEditingLevel(segmentIndex: editingAssessment?.level ?? "0")
             }
             if let value = valueTxtFld {
                 value.text = editingAssessment?.value
@@ -109,110 +110,116 @@ class AddAssessmentViewController: UIViewController, UIPopoverPresentationContro
     
     @IBAction func addBtnHandler(_ sender: Any) {
         
-        if validate() {
-            var calendarIdentifier = ""
-            var addedToCalendar = false
-            var eventDeleted = false
-            let addToCalendarFlag = Bool(addToCalendarSwitch.isOn)
-            let eventStore = EKEventStore()
-            
-            let moduleName = moduleNameTxtFld.text
-            let assessmentName = assessmentNameTxtFld.text
-            let level = getLevel(segmentIndex: levelSegementedControl.selectedSegmentIndex)
-            let value = valueTxtFld.text
-            let mark = markTxtFld.text
-            let dueDate = dueDatePicker.date
-            let notes = notesTxtFld.text
-            
-            
-            guard let appDelegate =
-                UIApplication.shared.delegate as? AppDelegate else {
-                    return
-            }
-            
-            let managedContext = appDelegate.persistentContainer.viewContext
-            let entity = NSEntityDescription.entity(forEntityName: "Assessment", in: managedContext)!
-            
-            var assessment = NSManagedObject()
-            
-            if editingMode {
-                assessment = (editingAssessment as? Assessment)!
-            } else {
-                assessment = NSManagedObject(entity: entity, insertInto: managedContext)
-            }
-            
-            if addToCalendarFlag {
+        if validateTextField() {
+            if validateTxtFldValues() {
+                var calendarIdentifier = ""
+                var addedToCalendar = false
+                var eventDeleted = false
+                let addToCalendarFlag = Bool(addToCalendarSwitch.isOn)
+                let eventStore = EKEventStore()
+                
+                let moduleName = moduleNameTxtFld.text
+                let assessmentName = assessmentNameTxtFld.text
+                let level = getLevel(segmentIndex: levelSegementedControl.selectedSegmentIndex)
+                let value = valueTxtFld.text
+                let mark = markTxtFld.text
+                let dueDate = dueDatePicker.date
+                let notes = notesTxtFld.text
+                
+                
+                guard let appDelegate =
+                    UIApplication.shared.delegate as? AppDelegate else {
+                        return
+                }
+                
+                let managedContext = appDelegate.persistentContainer.viewContext
+                let entity = NSEntityDescription.entity(forEntityName: "Assessment", in: managedContext)!
+                
+                var assessment = NSManagedObject()
+                
                 if editingMode {
-                    if let assessment = editingAssessment {
-                        if !assessment.addToCalendar {
-                            if (EKEventStore.authorizationStatus(for: .event) != EKAuthorizationStatus.authorized) {
-                                eventStore.requestAccess(to: .event, completion: {
-                                    granted, error in
-                                    calendarIdentifier = self.createEvent(eventStore, title: assessmentName!, startDate: self.now, endDate: dueDate)
-                                })
-                            } else {
-                                calendarIdentifier = createEvent(eventStore, title: assessmentName!, startDate: now, endDate: dueDate)
+                    assessment = (editingAssessment as? Assessment)!
+                } else {
+                    assessment = NSManagedObject(entity: entity, insertInto: managedContext)
+                }
+                
+                if addToCalendarFlag {
+                    if editingMode {
+                        if let assessment = editingAssessment {
+                            if !assessment.addToCalendar {
+                                if (EKEventStore.authorizationStatus(for: .event) != EKAuthorizationStatus.authorized) {
+                                    eventStore.requestAccess(to: .event, completion: {
+                                        granted, error in
+                                        calendarIdentifier = self.createEvent(eventStore, title: assessmentName!, startDate: self.now, endDate: dueDate)
+                                    })
+                                } else {
+                                    calendarIdentifier = createEvent(eventStore, title: assessmentName!, startDate: now, endDate: dueDate)
+                                }
                             }
                         }
+                    } else {
+                        if (EKEventStore.authorizationStatus(for: .event) != EKAuthorizationStatus.authorized) {
+                            eventStore.requestAccess(to: .event, completion: {
+                                granted, error in
+                                calendarIdentifier = self.createEvent(eventStore, title: assessmentName!, startDate: self.now, endDate: dueDate)
+                            })
+                        } else {
+                            calendarIdentifier = createEvent(eventStore, title: assessmentName!, startDate: now, endDate: dueDate)
+                        }
+                    }
+                    if calendarIdentifier != "" {
+                        addedToCalendar = true
                     }
                 } else {
-                    if (EKEventStore.authorizationStatus(for: .event) != EKAuthorizationStatus.authorized) {
-                        eventStore.requestAccess(to: .event, completion: {
-                            granted, error in
-                            calendarIdentifier = self.createEvent(eventStore, title: assessmentName!, startDate: self.now, endDate: dueDate)
-                        })
-                    } else {
-                        calendarIdentifier = createEvent(eventStore, title: assessmentName!, startDate: now, endDate: dueDate)
-                    }
-                }
-                if calendarIdentifier != "" {
-                    addedToCalendar = true
-                }
-            } else {
-                if editingMode {
-                    if let assessment = editingAssessment {
-                        if assessment.addToCalendar {
-                            if (EKEventStore.authorizationStatus(for: .event) != EKAuthorizationStatus.authorized) {
-                                eventStore.requestAccess(to: .event, completion: { (granted, error) -> Void in
-                                    eventDeleted = self.deleteEvent(eventStore, eventIdentifier: assessment.calendarIdentifier!)
-                                })
-                            } else {
-                                eventDeleted = deleteEvent(eventStore, eventIdentifier: assessment.calendarIdentifier!)
+                    if editingMode {
+                        if let assessment = editingAssessment {
+                            if assessment.addToCalendar {
+                                if (EKEventStore.authorizationStatus(for: .event) != EKAuthorizationStatus.authorized) {
+                                    eventStore.requestAccess(to: .event, completion: { (granted, error) -> Void in
+                                        eventDeleted = self.deleteEvent(eventStore, eventIdentifier: assessment.calendarIdentifier!)
+                                    })
+                                } else {
+                                    eventDeleted = deleteEvent(eventStore, eventIdentifier: assessment.calendarIdentifier!)
+                                }
                             }
                         }
                     }
                 }
-            }
-            
-            // Handle event creation state
-            if eventDeleted {
-                addedToCalendar = false
-            }
-            
-            assessment.setValue(moduleName, forKeyPath: "moduleName")
-            assessment.setValue(assessmentName, forKeyPath: "assesstmentName")
-            assessment.setValue(level, forKeyPath: "level")
-            assessment.setValue(value, forKeyPath: "value")
-            assessment.setValue(mark, forKeyPath: "mark")
-            assessment.setValue(notes, forKeyPath: "notes")
-            
-            if editingMode {
-                assessment.setValue(editingAssessment?.startDate, forKeyPath: "startDate")
+                
+                // Handle event creation state
+                if eventDeleted {
+                    addedToCalendar = false
+                }
+                
+                assessment.setValue(moduleName, forKeyPath: "moduleName")
+                assessment.setValue(assessmentName, forKeyPath: "assesstmentName")
+                assessment.setValue(level, forKeyPath: "level")
+                assessment.setValue(value, forKeyPath: "value")
+                assessment.setValue(mark, forKeyPath: "mark")
+                assessment.setValue(notes, forKeyPath: "notes")
+                
+                if editingMode {
+                    assessment.setValue(editingAssessment?.startDate, forKeyPath: "startDate")
+                } else {
+                    assessment.setValue(now, forKeyPath: "startDate")
+                }
+                
+                assessment.setValue(dueDate, forKeyPath: "dueDate")
+                assessment.setValue(addedToCalendar, forKeyPath: "addToCalendar")
+                assessment.setValue(calendarIdentifier, forKey: "calendarIdentifier")
+                
+                print(assessment)
+                
+                do {
+                    try managedContext.save()
+                    assessments.append(assessment)
+                } catch _ as NSError {
+                    let alert = UIAlertController(title: "Error", message: "An error occured while saving the assessment.", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
             } else {
-                assessment.setValue(now, forKeyPath: "startDate")
-            }
-            
-            assessment.setValue(dueDate, forKeyPath: "dueDate")
-            assessment.setValue(addedToCalendar, forKeyPath: "addToCalendar")
-            assessment.setValue(calendarIdentifier, forKey: "calendarIdentifier")
-            
-            print(assessment)
-            
-            do {
-                try managedContext.save()
-                assessments.append(assessment)
-            } catch _ as NSError {
-                let alert = UIAlertController(title: "Error", message: "An error occured while saving the assessment.", preferredStyle: UIAlertController.Style.alert)
+                let alert = UIAlertController(title: "Error", message: "The Contribution Value and Awarded Mark should be between 0 to 100.", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
@@ -297,7 +304,7 @@ class AddAssessmentViewController: UIViewController, UIPopoverPresentationContro
     
     // Handles the add button enable state
     func toggleAddButtonEnability() {
-        if validate() {
+        if validateTextField() {
             addAssessmentBtn.isEnabled = true;
         } else {
             addAssessmentBtn.isEnabled = false;
@@ -311,8 +318,15 @@ class AddAssessmentViewController: UIViewController, UIPopoverPresentationContro
     }
     
     // Check if the required fields are empty or not
-    func validate() -> Bool {
+    func validateTextField() -> Bool {
         if !(moduleNameTxtFld.text?.isEmpty)! && !(assessmentNameTxtFld.text?.isEmpty)! && !(valueTxtFld.text?.isEmpty)! && !(markTxtFld.text?.isEmpty)! && !(notesTxtFld.text?.isEmpty)! {
+            return true
+        }
+        return false
+    }
+    
+    func validateTxtFldValues() -> Bool {
+        if (validation.validateCentury(text: valueTxtFld.text!)) && (validation.validateCentury(text: markTxtFld.text!))  {
             return true
         }
         return false
@@ -320,7 +334,7 @@ class AddAssessmentViewController: UIViewController, UIPopoverPresentationContro
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
        if (textField == valueTxtFld || textField == markTxtFld) {
-           let allowedCharacters = CharacterSet(charactersIn:"0123456789 ")//Here change this characters based on your requirement
+           let allowedCharacters = CharacterSet(charactersIn:"0123456789 ")//Numeric characters Only
            let characterSet = CharacterSet(charactersIn: string)
            return allowedCharacters.isSuperset(of: characterSet)
        }

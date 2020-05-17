@@ -9,7 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AssessmentCell" id="HxX-fu-dcJ" userLabel="AssessmentCell" customClass="AssessmentTableViewCell" customModule="AssessmentPlannerApp" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="AssessmentCell" id="HxX-fu-dcJ" userLabel="AssessmentCell" customClass="AssessmentTableViewCell" customModule="AssessmentPlannerApp" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="420" height="97"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HxX-fu-dcJ" id="Vz8-a8-lqX">
@@ -65,7 +65,6 @@
                         </constraints>
                     </view>
                 </subviews>
-                <color key="backgroundColor" red="1" green="0.90001429585285364" blue="0.68700151681546617" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="Sfm-Gg-uIY" secondAttribute="bottom" constant="4" id="2Zh-a6-drP"/>
                     <constraint firstItem="Sfm-Gg-uIY" firstAttribute="leading" secondItem="Vz8-a8-lqX" secondAttribute="leading" constant="4" id="Dej-SG-xJB"/>

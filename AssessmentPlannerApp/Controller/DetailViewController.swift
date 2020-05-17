@@ -314,7 +314,12 @@ class DetailViewController: UIViewController, NSFetchedResultsControllerDelegate
         case .delete:
             taskTableView.deleteRows(at: [indexPath!], with: .fade)
         case .update:
-            configureCell(taskTableView.cellForRow(at: indexPath!)! as! TaskTableViewCell, withTask: anObject as! Task, index: indexPath!.row)
+//            configureCell(taskTableView.cellForRow(at: indexPath!)! as! TaskTableViewCell, withTask: anObject as! Task, index: indexPath!.row)
+            if(taskTableView.cellForRow(at: indexPath!) == nil){
+                print("These are what we are getting " , controller, anObject, indexPath!.row)
+            }else{
+                configureCell(taskTableView.cellForRow(at: IndexPath(row: indexPath!.row, section: 0)) as! TaskTableViewCell, withTask: anObject as! Task, index: indexPath!.row)
+            }
         case .move:
             configureCell(taskTableView.cellForRow(at: indexPath!)! as! TaskTableViewCell, withTask: anObject as! Task, index: indexPath!.row)
             taskTableView.moveRow(at: indexPath!, to: newIndexPath!)

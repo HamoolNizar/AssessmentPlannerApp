@@ -259,16 +259,16 @@ class AddAssessmentViewController: UIViewController, UIPopoverPresentationContro
     func getEditingLevel(segmentIndex: String) -> Int {
         var lvl = 0
         switch Int(segmentIndex) {
-        case 1:
+        case 4:
             lvl = 1
             return lvl
-        case 2:
+        case 5:
             lvl = 2
             return lvl
-        case 3:
+        case 6:
             lvl = 3
             return lvl
-        case 4:
+        case 7:
             lvl = 4
             return lvl
         default:

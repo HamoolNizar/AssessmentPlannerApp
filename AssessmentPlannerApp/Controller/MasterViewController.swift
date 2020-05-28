@@ -25,11 +25,11 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
         
-        // initializing the custom cell
+        /// initializing the custom cell
         let nibName = UINib(nibName: "AssessmentTableViewCell", bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: "AssessmentCell")
         
-        // For Testing Purpose
+        /// This is to test cell display using sample data
         //         addSampleDate()
     }
     
@@ -41,24 +41,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         autoSelectTableRow()
     }
     
-//    @objc
-//    func insertNewObject(_ sender: Any) {
-//        let context = self.fetchedResultsController.managedObjectContext
-//        let newAssessment = Assessment(context: context)
-//
-//        // If appropriate, configure the new managed object.
-//        // newAssessment.timestamp = Date()
-//
-//        // Save the context.
-//        do {
-//            try context.save()
-//        } catch {
-//            // Replace this implementation with code to handle the error appropriately.
-//            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-//            let nserror = error as NSError
-//            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-//        }
-//    }
     
     // MARK: - Segues
     
@@ -103,6 +85,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionInfo = fetchedResultsController.sections![section]
         return sectionInfo.numberOfObjects
+        
+        /// This is to test cell display
         //        return 5
     }
     
@@ -112,6 +96,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         configureCell(cell, withAssessment: assessment)
         return cell
         
+        /// This is to test cell display
         //        let cell = tableView.dequeueReusableCell(withIdentifier: "AssessmentCell", for: indexPath) as! AssessmentTableViewCell
         //        cell.moduleNameLabel.text = "6COS0003241C"
         //        cell.assessmentNameLabel.text = "Coursework 1"
@@ -236,7 +221,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
      }
      */
     
-    
+    /// This function is to automatically select a assesment when loading the application and when change occurs
     func autoSelectTableRow() {
         let indexPath = IndexPath(row: 0, section: 0)
         if tableView.hasRowAtIndexPath(indexPath: indexPath as NSIndexPath) {
@@ -252,8 +237,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         }
     }
     
-    //    Testing Purpose Only
-    //    Add Sample Assessment for Testing
+    /// Testing Purpose Only
+    /// Add Sample Assessment for Testing
     func addSampleDate() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext

@@ -12,7 +12,7 @@ import CoreData
 import EventKit
 
 class AddTaskViewController: UIViewController, UIPopoverPresentationControllerDelegate, UITextFieldDelegate {
-
+    
     var tasks: [NSManagedObject] = []
     var selectedAssessment: Assessment?
     var editingMode: Bool = false
@@ -47,27 +47,27 @@ class AddTaskViewController: UIViewController, UIPopoverPresentationControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // set end date picker maximum date to project end date
+        /// Setting the maximum for the due date as the assessment due date.
         dueDatePicker.maximumDate = selectedAssessment!.dueDate
         
         if !editingMode {
-            // Set start date to current
+            /// Set initial start date current time.
             startDatePicker.minimumDate = now
             startDateLbl.text = formatter.formatDate(now)
             
-            // Set end date to one hour ahead of current time
+            /// Set initial end date to one hour ahead of current time.
             var timeNow = Date()
             timeNow.addTimeInterval(TimeInterval(3600.00))
             dueDateLbl.text = formatter.formatDate(timeNow)
             dueDatePicker.minimumDate = timeNow
             
-            // Setting the initial task progress
+            /// Set initial progress slider value to 50%
             progressSlider.value = 0.5
             progressLbl.text = "Tast Completion Progress - 50%"
         }
         
         configureView()
-        // Disable add button
+        /// Disable add button
         toggleAddButtonEnability()
     }
     
@@ -107,32 +107,44 @@ class AddTaskViewController: UIViewController, UIPopoverPresentationControllerDe
             }
         }
     }
-
+    
+    /// This function gets triggered when the start date date picker gets edited.
+    /// This function will set the minimum of the due date lto one hour ahead the start date.
+    ///
+    /// - Parameter sender: start date UIDatePicker.
     @IBAction func startDatePickerValueChanged(_ sender: UIDatePicker) {
         
         startDateLbl.text = formatter.formatDate(sender.date)
-        // Set end date minimum to one hour ahead the start date
         let dueDate = sender.date.addingTimeInterval(TimeInterval(3600.00))
         dueDatePicker.minimumDate = dueDate
         dueDateLbl.text = formatter.formatDate(dueDate)
         
     }
     
+    /// This function gets triggered when the due date date picker gets edited.
+    /// This function will set the maximum of the start date to one hour before the due date.
+    ///
+    /// - Parameter sender: due date UIDatePicker.
     @IBAction func dueDatePickerValueChanged(_ sender: UIDatePicker) {
         
         dueDateLbl.text = formatter.formatDate(sender.date)
-        
-        // Set start date maximum to one minute before the end date
         startDatePicker.maximumDate = sender.date.addingTimeInterval(-TimeInterval(3600.00))
-
+        
     }
     
+    /// This function close the popover view.
+    ///
+    /// - Parameter sender: Cancel UIBarButtonItem.
     @IBAction func cancelBtnHandler(_ sender: UIBarButtonItem) {
-    
+        
         dismissAddTaskPopOver()
     }
     
-    
+    /// This function gets triggered when the button is being clicked.
+    /// Inside this function will take take all the data inserted and it will validate the values
+    /// Then the function will create an task object with the data and it will be added to the task table in the coredata.
+    ///
+    /// - Parameter sender: Add Button.
     @IBAction func addTaskBtnHandler(_ sender: UIBarButtonItem) {
         
         if validate() {
@@ -254,7 +266,7 @@ class AddTaskViewController: UIViewController, UIPopoverPresentationControllerDe
         progressLbl.text = "Tast Completion Progress - \(progress)%"
     }
     
-    // Handles the add button enable state
+    /// This function will handle the add button enablity and disability
     func toggleAddButtonEnability() {
         if validate() {
             addTaskBtn.isEnabled = true;
@@ -263,13 +275,15 @@ class AddTaskViewController: UIViewController, UIPopoverPresentationControllerDe
         }
     }
     
-    // Dismiss Popover
+    /// This function is to close the popover view
     func dismissAddTaskPopOver() {
         dismiss(animated: true, completion: nil)
         popoverPresentationController?.delegate?.popoverPresentationControllerDidDismissPopover?(popoverPresentationController!)
     }
     
-    // Check if the required fields are empty or not
+    /// This function will validate the textfields,  whether thery are empty or not
+    ///
+    /// - Returns: Boolean value of True / False
     func validate() -> Bool {
         if !(taskNameTxtFld.text?.isEmpty)! && !(notesTxtFld.text?.isEmpty)! {
             return true
@@ -277,7 +291,13 @@ class AddTaskViewController: UIViewController, UIPopoverPresentationControllerDe
         return false
     }
     
-    // Creates an event in the EKEventStore
+    /// This function will create an event in the calendar application of the device with the Assessment title, start data and end date.
+    ///
+    /// - Parameter eventStore: EKEventStore.
+    /// - Parameter title: String.
+    /// - Parameter startDate: Date.
+    /// - Parameter endDate: Date .
+    /// - Returns: String value for the  event identifier
     func createEvent(_ eventStore: EKEventStore, title: String, startDate: Date, endDate: Date) -> String {
         let event = EKEvent(eventStore: eventStore)
         var identifier = ""
@@ -299,7 +319,11 @@ class AddTaskViewController: UIViewController, UIPopoverPresentationControllerDe
         return identifier
     }
     
-    // Removes an event from the EKEventStore
+    /// This function will delete an event in the calendar application of the device using the event identifier.
+    ///
+    /// - Parameter eventStore: EKEventStore.
+    /// - Parameter eventIdentifier: String value of the event Identifier.
+    /// - Returns: Boolean value of True/False
     func deleteEvent(_ eventStore: EKEventStore, eventIdentifier: String) -> Bool {
         var success = false
         let eventToRemove = eventStore.event(withIdentifier: eventIdentifier)

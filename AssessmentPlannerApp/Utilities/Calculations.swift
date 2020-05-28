@@ -11,6 +11,11 @@ import Foundation
 public class Calculations {
     let now = Date()
     
+    /// This function will calculate the difference between two dates.
+    ///
+    /// - Parameter start: Date.
+    /// - Parameter end: Date.
+    /// - Returns: Int value of date difference
     public func getDateDiff(_ start: Date, end: Date) -> Int {
         let currentCalendar = Calendar.current
         guard let start = currentCalendar.ordinality(of: .day, in: .era, for: start) else {
@@ -22,6 +27,11 @@ public class Calculations {
         return end - start
     }
     
+    /// This function will calculate the percentage for the remaining time.
+    ///
+    /// - Parameter start: Date.
+    /// - Parameter end: Date.
+    /// - Returns: Int value of percentage
     public func getRemainingTimePercentage(_ start: Date, end: Date) -> Int {
         let elapsed = getTimeDiffInSeconds(start, end: end)
         let remaining = getTimeDiffInSeconds(now, end: end)
@@ -35,6 +45,11 @@ public class Calculations {
         return percentage
     }
     
+    /// This function will calculate the difference between two dates retruns the difference in seconds.
+    ///
+    /// - Parameter start: Date.
+    /// - Parameter end: Date.
+    /// - Returns: Double value of date difference
     public func getTimeDiffInSeconds(_ start: Date, end: Date) -> Double {
         let difference: TimeInterval? = end.timeIntervalSince(start)
 
@@ -45,6 +60,11 @@ public class Calculations {
         return Double(difference!)
     }
     
+    /// This function will calculate the difference between two dates and returns days, hours and minutes separately.
+    ///
+    /// - Parameter start: Date.
+    /// - Parameter end: Date.
+    /// - Returns: Int value of difference in days, Int value of difference in hours, Int value of difference in minutes,
     public func getTimeDiff(_ start: Date, end: Date) -> (Int, Int, Int) {
         let difference: TimeInterval? = end.timeIntervalSince(start)
         
@@ -75,6 +95,10 @@ public class Calculations {
         return (daysLeft, hoursLeft, minutesLeft)
     }
     
+    /// This function will calculate the percentage the assessment progress.
+    ///
+    /// - Parameter tasks: Tasks.
+    /// - Returns: Int value of progress percentage
     public func getProjectProgress(_ tasks: [Task]) -> Int {
         var progressTotal: Float = 0
         var progress: Int = 0

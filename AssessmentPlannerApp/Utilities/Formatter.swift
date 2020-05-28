@@ -10,8 +10,10 @@ import Foundation
 
 public class Formatter {
     
-    // Format date to "dd MMM yyyy HH:mm"
-    
+    /// This function will format date to "dd MMM yyyy HH:mm" format.
+    ///
+    /// - Parameter date: Dater.
+    /// - Returns: String value of date
     public func formatDate(_ date: Date) -> String {
         let dateFormatter : DateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM yyyy HH:mm"

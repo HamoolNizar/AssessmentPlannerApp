@@ -10,6 +10,12 @@ import Foundation
 import UIKit
 
 public class Colours {
+    
+    /// This function will return the UIColor for the progress bar and timer bar according to the percentage.
+    ///
+    /// - Parameter percentage: Int value for the percentage.
+    /// - Parameter negative: Boolean value for which progress bar.
+    /// - Returns: UIColor
     public func getProgressGradient(_ percentage: Int, negative: Bool = false) -> [UIColor] {
         let _default: [UIColor] = [UIColor.red, UIColor.orange]
         

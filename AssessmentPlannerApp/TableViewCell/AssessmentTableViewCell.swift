@@ -31,19 +31,10 @@ class AssessmentTableViewCell: UITableViewCell {
     
     
     func commonInit(moduleName: String, assessmentName: String, assessmentStatus: UIColor, taskProgress: CGFloat, dueDate: Date, notes: String) {
-//        var iconName = "ic-flag-green"
-//        if priority == "Low" {
-//            iconName = "ic-flag-green"
-//        } else if priority == "Medium" {
-//            iconName = "ic-flag-blue"
-//        } else if priority == "High" {
-//            iconName = "ic-flag-red"
-//        }
         
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-yyyy HH:mm"
         
-//        priorityIcon.image = UIImage(named: iconName)
         moduleNameLabel.text = moduleName
         assessmentNameLabel.text = assessmentName
         assessmentStatusView.backgroundColor = assessmentStatus

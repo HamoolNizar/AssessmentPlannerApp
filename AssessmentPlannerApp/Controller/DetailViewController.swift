@@ -31,7 +31,6 @@ class DetailViewController: UIViewController, NSFetchedResultsControllerDelegate
     
     var detailViewController: DetailViewController? = nil
     var managedObjectContext: NSManagedObjectContext? = nil
-//    var managedObjectContext: NSManagedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     let now = Date()
     let bool = true
@@ -63,9 +62,8 @@ class DetailViewController: UIViewController, NSFetchedResultsControllerDelegate
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         self.managedObjectContext = appDelegate.persistentContainer.viewContext
         
-//        managedObjectContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
         
-        // initializing the custom cell
+        /// initializing the custom cell
         let nibName = UINib(nibName: "TaskTableViewCell", bundle: nil)
         taskTableView.register(nibName, forCellReuseIdentifier: "TaskCell")
         
@@ -74,34 +72,15 @@ class DetailViewController: UIViewController, NSFetchedResultsControllerDelegate
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Set the default selected row
+        /// Set the default selected row
         let indexPath = IndexPath(row: 0, section: 0)
         if taskTableView.hasRowAtIndexPath(indexPath: indexPath as NSIndexPath) {
             taskTableView.selectRow(at: indexPath, animated: true, scrollPosition: .bottom)
         }
     }
     
-//    @objc
-//    func insertNewObject(_ sender: Any) {
-//        let context = self.fetchedResultsController.managedObjectContext
-//        let newTask = Task(context: context)
-//
-//        // If appropriate, configure the new managed object.
-//        // newTask.timestamp = Date()
-//
-//        // Save the context.
-//        do {
-//            try context.save()
-//        } catch {
-//            // Replace this implementation with code to handle the error appropriately.
-//            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-//            let nserror = error as NSError
-//            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-//        }
-//    }
-    
+    /// This function will update the UI for the detail item
     func configureView() {
-        // Update the user interface for the detail item.
         if let assessment = selectedAssessment {
             if let moduleNameLbl = moduleNameLabel {
                 moduleNameLbl.text = assessment.moduleName
@@ -193,7 +172,6 @@ class DetailViewController: UIViewController, NSFetchedResultsControllerDelegate
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //        let sectionInfo = fetchedResultsController.sections![section]
         let sectionInfo = self.fetchedResultsController.sections![section] as NSFetchedResultsSectionInfo
         
         if selectedAssessment == nil {
@@ -245,7 +223,9 @@ class DetailViewController: UIViewController, NSFetchedResultsControllerDelegate
     }
     
     func configureCell(_ cell: TaskTableViewCell, withTask task: Task, index: Int) {
+        /// This is for Testing Purpose
         //        print("Related assessment", task.assessment)
+        
         cell.commonInit(taskName: task.taskName, taskProgress: CGFloat(task.progress), startDate: task.startDate as Date, dueDate: task.dueDate as Date, notes: task.notes, taskNo: index + 1)
     }
     
@@ -262,7 +242,7 @@ class DetailViewController: UIViewController, NSFetchedResultsControllerDelegate
         fetchRequest.fetchBatchSize = 20
         
         if selectedAssessment != nil {
-            // Setting a predicate
+            /// Setting a predicate
             let predicate = NSPredicate(format: "%K == %@", "assessment", selectedAssessment as! Assessment)
             fetchRequest.predicate = predicate
         }
@@ -316,7 +296,7 @@ class DetailViewController: UIViewController, NSFetchedResultsControllerDelegate
         case .update:
 //            configureCell(taskTableView.cellForRow(at: indexPath!)! as! TaskTableViewCell, withTask: anObject as! Task, index: indexPath!.row)
             if(taskTableView.cellForRow(at: indexPath!) == nil){
-                print("These are what we are getting " , controller, anObject, indexPath!.row)
+                print("These are the returned controller, object and index values", controller, anObject, indexPath!.row)
             }else{
                 configureCell(taskTableView.cellForRow(at: IndexPath(row: indexPath!.row, section: 0)) as! TaskTableViewCell, withTask: anObject as! Task, index: indexPath!.row)
             }
@@ -335,6 +315,11 @@ class DetailViewController: UIViewController, NSFetchedResultsControllerDelegate
         //        taskTableView.reloadData()
     }
     
+    /// This function is to show the notes to display notes popover view
+    ///
+    /// - Parameter cell: Custom TableViewCell.
+    /// - Parameter button: UIButton.
+    /// - Parameter notes: String.
     func showPopoverFrom(cell: TaskTableViewCell, forButton button: UIButton, forNotes notes: String) {
         let buttonFrame = button.frame
         var showRect = cell.convert(buttonFrame, to: taskTableView)
@@ -365,8 +350,7 @@ extension DetailViewController: TaskTableViewCellDelegate {
     }
 }
 
-
-// Manually Inserting Sample Data
+/// Manually Inserting Sample Data for Testing the UI
 
 //extension DetailViewController: UITableViewDataSource {
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

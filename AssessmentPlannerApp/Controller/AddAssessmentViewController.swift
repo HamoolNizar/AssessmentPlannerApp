@@ -46,20 +46,18 @@ class AddAssessmentViewController: UIViewController, UIPopoverPresentationContro
         dueDatePicker.minimumDate = now
         
         if !editingMode {
-            // Set initial end date to one hour ahead of current time
+            /// Set initial end date to one hour ahead of current time
             var time = Date()
             time.addTimeInterval(TimeInterval(3600.00))
             dueDateLabel.text = formatter.formatDate(time)
             
             valueTxtFld.delegate = self
             markTxtFld.delegate = self
-//            valueTxtFld.keyboardType = .numberPad
-//            markTxtFld.keyboardType = .numberPad
             
         }
         
         configureView()
-        // Disable add button
+        /// Disable add button
         toggleAddButtonEnability()
     }
     
@@ -100,14 +98,26 @@ class AddAssessmentViewController: UIViewController, UIPopoverPresentationContro
         }
     }
     
+    /// This function gets triggered when the date picker gets edited.
+    /// This function will set the due date label according to the date picker.
+    ///
+    /// - Parameter sender: due date UIDatePicker.
     @IBAction func dueDatePickerValueChanged(_ sender: UIDatePicker) {
         dueDateLabel.text = formatter.formatDate(sender.date)
     }
     
+    /// This function close the popover view.
+    ///
+    /// - Parameter sender: Cancel UIBarButtonItem.
     @IBAction func cancelBtnHandler(_ sender: UIBarButtonItem) {
-        dismissAddProjectPopOver()
+        dismissAddAssessmentPopOver()
     }
     
+    /// This function gets triggered when the button is being clicked.
+    /// Inside this function will take take all the data inserted and it will validate the values
+    /// Then the function will create an assesment object with the data and it will be added to the assesment table in the coredata.
+    ///
+    /// - Parameter sender: Add Button.
     @IBAction func addBtnHandler(_ sender: Any) {
         
         if validateTextField() {
@@ -230,11 +240,15 @@ class AddAssessmentViewController: UIViewController, UIPopoverPresentationContro
         }
         
         // Dismiss PopOver
-        dismissAddProjectPopOver()
+        dismissAddAssessmentPopOver()
         
         
     }
     
+    /// This function gets the segement index from the segmented control and returns the the appropriate level.
+    ///
+    /// - Parameter segmentIndex: Int value of the segment index.
+    /// - Returns: String value for the level
     func getLevel(segmentIndex: Int) -> String {
         var lvl = "3"
         switch segmentIndex {
@@ -256,6 +270,10 @@ class AddAssessmentViewController: UIViewController, UIPopoverPresentationContro
         }
     }
     
+    /// This function gets the segement index from the assesment table in the coredata and returns the the appropriate level.
+    ///
+    /// - Parameter segmentIndex: String value of the segment index.
+    /// - Returns: Int value for the level
     func getEditingLevel(segmentIndex: String) -> Int {
         var lvl = 0
         switch Int(segmentIndex) {
@@ -302,7 +320,7 @@ class AddAssessmentViewController: UIViewController, UIPopoverPresentationContro
     }
     
     
-    // Handles the add button enable state
+    /// This function will handle the add button enablity and disability
     func toggleAddButtonEnability() {
         if validateTextField() {
             addAssessmentBtn.isEnabled = true;
@@ -311,13 +329,15 @@ class AddAssessmentViewController: UIViewController, UIPopoverPresentationContro
         }
     }
     
-    // Dismiss Popover
-    func dismissAddProjectPopOver() {
+    /// This function is to close the popover view
+    func dismissAddAssessmentPopOver() {
         dismiss(animated: true, completion: nil)
         popoverPresentationController?.delegate?.popoverPresentationControllerDidDismissPopover?(popoverPresentationController!)
     }
     
-    // Check if the required fields are empty or not
+    /// This function will validate the textfields,  whether thery are empty or not
+    ///
+    /// - Returns: Boolean value of True / False
     func validateTextField() -> Bool {
         if !(moduleNameTxtFld.text?.isEmpty)! && !(assessmentNameTxtFld.text?.isEmpty)! && !(valueTxtFld.text?.isEmpty)! && !(markTxtFld.text?.isEmpty)! && !(notesTxtFld.text?.isEmpty)! {
             return true
@@ -325,6 +345,9 @@ class AddAssessmentViewController: UIViewController, UIPopoverPresentationContro
         return false
     }
     
+    /// This function will validate the textfields,  whether they are between 0 to 100
+    ///
+    /// - Returns: Boolean value True / False
     func validateTxtFldValues() -> Bool {
         if (validation.validateCentury(text: valueTxtFld.text!)) && (validation.validateCentury(text: markTxtFld.text!))  {
             return true
@@ -332,6 +355,12 @@ class AddAssessmentViewController: UIViewController, UIPopoverPresentationContro
         return false
     }
     
+    /// This function gets the textfield and limit the input for the textfield for only numeric values.
+    ///
+    /// - Parameter textField: TextField.
+    /// - Parameter range: NSRange.
+    /// - Parameter string: Replacement string value.
+    /// - Returns: Boolean value True / False
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
        if (textField == valueTxtFld || textField == markTxtFld) {
            let allowedCharacters = CharacterSet(charactersIn:"0123456789 ")//Numeric characters Only
@@ -341,7 +370,13 @@ class AddAssessmentViewController: UIViewController, UIPopoverPresentationContro
        return true
     }
     
-    // Creates an event in the EKEventStore
+    /// This function will create an event in the calendar application of the device with the Assessment title, start data and end date.
+    ///
+    /// - Parameter eventStore: EKEventStore.
+    /// - Parameter title: String.
+    /// - Parameter startDate: Date.
+    /// - Parameter endDate: Date .
+    /// - Returns: String value for the  event identifier
     func createEvent(_ eventStore: EKEventStore, title: String, startDate: Date, endDate: Date) -> String {
         let event = EKEvent(eventStore: eventStore)
         var identifier = ""
@@ -363,7 +398,11 @@ class AddAssessmentViewController: UIViewController, UIPopoverPresentationContro
         return identifier
     }
     
-    // Removes an event from the EKEventStore
+    /// This function will delete an event in the calendar application of the device using the event identifier.
+    ///
+    /// - Parameter eventStore: EKEventStore.
+    /// - Parameter eventIdentifier: String value of the event Identifier.
+    /// - Returns: Boolean value of True/False
     func deleteEvent(_ eventStore: EKEventStore, eventIdentifier: String) -> Bool {
         var success = false
         let eventToRemove = eventStore.event(withIdentifier: eventIdentifier)

@@ -403,202 +403,229 @@
                         <rect key="frame" x="0.0" y="0.0" width="388" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="jXZ-qt-PPV" userLabel="Master Stack">
-                                <rect key="frame" x="23" y="60" width="355" height="597"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PKt-Y8-Kel">
+                                <rect key="frame" x="13" y="50" width="375" height="617"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="h7T-iy-cUW" userLabel="Module Name Stack">
-                                        <rect key="frame" x="0.0" y="0.0" width="355" height="34"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Kc-jq-JDD" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="625"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Module Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="82E-vJ-b1p" userLabel="Module Name TxtFld">
-                                                <rect key="frame" x="0.0" y="0.0" width="355" height="34"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                                                        <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="moduleNameChange:" destination="JuU-8f-KCd" eventType="editingChanged" id="cUz-GI-NRO"/>
-                                                </connections>
-                                            </textField>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="82E-vJ-b1p" firstAttribute="leading" secondItem="h7T-iy-cUW" secondAttribute="leading" id="Xr6-6g-PDK"/>
-                                            <constraint firstAttribute="trailing" secondItem="82E-vJ-b1p" secondAttribute="trailing" id="pGP-5L-Nz9"/>
-                                        </constraints>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZFw-PW-bez" userLabel="Assessment Name Stack">
-                                        <rect key="frame" x="0.0" y="46.5" width="355" height="34"/>
-                                        <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Assessment Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S9W-FK-XrB" userLabel="Assessment TxtFld">
-                                                <rect key="frame" x="0.0" y="0.0" width="355" height="34"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                                                        <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="assessmentNameChange:" destination="JuU-8f-KCd" eventType="editingChanged" id="ZxD-lD-Eda"/>
-                                                </connections>
-                                            </textField>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="S9W-FK-XrB" firstAttribute="leading" secondItem="ZFw-PW-bez" secondAttribute="leading" id="q2x-tp-7bt"/>
-                                            <constraint firstAttribute="trailing" secondItem="S9W-FK-XrB" secondAttribute="trailing" id="ycI-8D-sAc"/>
-                                        </constraints>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="0a0-of-CJc" userLabel="Level Stack">
-                                        <rect key="frame" x="0.0" y="93" width="355" height="67"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4D-IY-E3w" userLabel="Level Lbl">
-                                                <rect key="frame" x="0.0" y="0.0" width="355" height="31"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tcT-em-PBD">
-                                                <rect key="frame" x="0.0" y="36" width="355" height="32"/>
-                                                <segments>
-                                                    <segment title="3"/>
-                                                    <segment title="4"/>
-                                                    <segment title="5"/>
-                                                    <segment title="6"/>
-                                                    <segment title="7"/>
-                                                </segments>
-                                                <connections>
-                                                    <action selector="levelChange:" destination="JuU-8f-KCd" eventType="editingChanged" id="74j-wa-yP7"/>
-                                                </connections>
-                                            </segmentedControl>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="tcT-em-PBD" firstAttribute="leading" secondItem="0a0-of-CJc" secondAttribute="leading" id="Ak1-ci-BeB"/>
-                                            <constraint firstAttribute="trailing" secondItem="tcT-em-PBD" secondAttribute="trailing" id="smn-fc-LO8"/>
-                                        </constraints>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ioO-tw-dFi" userLabel="Value Stack">
-                                        <rect key="frame" x="0.0" y="172.5" width="355" height="34"/>
-                                        <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Contribution Value - 0%" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LPB-5F-z8d" userLabel="Value TxtFld">
-                                                <rect key="frame" x="0.0" y="0.0" width="355" height="34"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                                                        <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="valueChange:" destination="JuU-8f-KCd" eventType="editingChanged" id="ggF-ma-yI4"/>
-                                                </connections>
-                                            </textField>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="LPB-5F-z8d" secondAttribute="trailing" id="nyA-eQ-OGu"/>
-                                            <constraint firstItem="LPB-5F-z8d" firstAttribute="leading" secondItem="ioO-tw-dFi" secondAttribute="leading" id="pEM-NR-Ak4"/>
-                                        </constraints>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qR3-k6-Uze" userLabel="Mark Stack">
-                                        <rect key="frame" x="0.0" y="219" width="355" height="34"/>
-                                        <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Awarded Marks - 0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3J1-Qe-35o" userLabel="Mark TxtFld">
-                                                <rect key="frame" x="0.0" y="0.0" width="355" height="34"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                                                        <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="markChange:" destination="JuU-8f-KCd" eventType="editingChanged" id="4bR-Zb-osm"/>
-                                                </connections>
-                                            </textField>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="3J1-Qe-35o" secondAttribute="trailing" id="PYk-CW-Ksi"/>
-                                            <constraint firstItem="3J1-Qe-35o" firstAttribute="leading" secondItem="qR3-k6-Uze" secondAttribute="leading" id="yUZ-6V-0RU"/>
-                                        </constraints>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="0WD-1Q-it5" userLabel="Date Stack">
-                                        <rect key="frame" x="0.0" y="265.5" width="355" height="241.5"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="VUj-Kf-6aP" userLabel="Due Date Stack">
-                                                <rect key="frame" x="0.0" y="0.0" width="355" height="20.5"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="jXZ-qt-PPV" userLabel="Master Stack">
+                                                <rect key="frame" x="10" y="10" width="355" height="605"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ZN-RP-zrB" userLabel="Due Date Lbl">
-                                                        <rect key="frame" x="0.0" y="0.0" width="177.5" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rh0-KZ-1aY" userLabel="Date Lbl">
-                                                        <rect key="frame" x="177.5" y="0.0" width="177.5" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="h7T-iy-cUW" userLabel="Module Name Stack">
+                                                        <rect key="frame" x="0.0" y="0.0" width="355" height="34"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Module Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="82E-vJ-b1p" userLabel="Module Name TxtFld">
+                                                                <rect key="frame" x="0.0" y="0.0" width="355" height="34"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                                                                        <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="moduleNameChange:" destination="JuU-8f-KCd" eventType="editingChanged" id="cUz-GI-NRO"/>
+                                                                </connections>
+                                                            </textField>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="82E-vJ-b1p" firstAttribute="leading" secondItem="h7T-iy-cUW" secondAttribute="leading" id="Xr6-6g-PDK"/>
+                                                            <constraint firstAttribute="trailing" secondItem="82E-vJ-b1p" secondAttribute="trailing" id="pGP-5L-Nz9"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZFw-PW-bez" userLabel="Assessment Name Stack">
+                                                        <rect key="frame" x="0.0" y="47.5" width="355" height="34"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Assessment Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S9W-FK-XrB" userLabel="Assessment TxtFld">
+                                                                <rect key="frame" x="0.0" y="0.0" width="355" height="34"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                                                                        <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="assessmentNameChange:" destination="JuU-8f-KCd" eventType="editingChanged" id="ZxD-lD-Eda"/>
+                                                                </connections>
+                                                            </textField>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="S9W-FK-XrB" firstAttribute="leading" secondItem="ZFw-PW-bez" secondAttribute="leading" id="q2x-tp-7bt"/>
+                                                            <constraint firstAttribute="trailing" secondItem="S9W-FK-XrB" secondAttribute="trailing" id="ycI-8D-sAc"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="0a0-of-CJc" userLabel="Level Stack">
+                                                        <rect key="frame" x="0.0" y="95.5" width="355" height="67"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4D-IY-E3w" userLabel="Level Lbl">
+                                                                <rect key="frame" x="0.0" y="0.0" width="355" height="31"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tcT-em-PBD">
+                                                                <rect key="frame" x="0.0" y="36" width="355" height="32"/>
+                                                                <segments>
+                                                                    <segment title="3"/>
+                                                                    <segment title="4"/>
+                                                                    <segment title="5"/>
+                                                                    <segment title="6"/>
+                                                                    <segment title="7"/>
+                                                                </segments>
+                                                                <connections>
+                                                                    <action selector="levelChange:" destination="JuU-8f-KCd" eventType="editingChanged" id="74j-wa-yP7"/>
+                                                                </connections>
+                                                            </segmentedControl>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="tcT-em-PBD" firstAttribute="leading" secondItem="0a0-of-CJc" secondAttribute="leading" id="Ak1-ci-BeB"/>
+                                                            <constraint firstAttribute="trailing" secondItem="tcT-em-PBD" secondAttribute="trailing" id="smn-fc-LO8"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ioO-tw-dFi" userLabel="Value Stack">
+                                                        <rect key="frame" x="0.0" y="176" width="355" height="34"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Contribution Value - 0%" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LPB-5F-z8d" userLabel="Value TxtFld">
+                                                                <rect key="frame" x="0.0" y="0.0" width="355" height="34"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                                                                        <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="valueChange:" destination="JuU-8f-KCd" eventType="editingChanged" id="ggF-ma-yI4"/>
+                                                                </connections>
+                                                            </textField>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="LPB-5F-z8d" secondAttribute="trailing" id="nyA-eQ-OGu"/>
+                                                            <constraint firstItem="LPB-5F-z8d" firstAttribute="leading" secondItem="ioO-tw-dFi" secondAttribute="leading" id="pEM-NR-Ak4"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qR3-k6-Uze" userLabel="Mark Stack">
+                                                        <rect key="frame" x="0.0" y="223.5" width="355" height="34"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Awarded Marks - 0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3J1-Qe-35o" userLabel="Mark TxtFld">
+                                                                <rect key="frame" x="0.0" y="0.0" width="355" height="34"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                                                                        <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="markChange:" destination="JuU-8f-KCd" eventType="editingChanged" id="4bR-Zb-osm"/>
+                                                                </connections>
+                                                            </textField>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="3J1-Qe-35o" secondAttribute="trailing" id="PYk-CW-Ksi"/>
+                                                            <constraint firstItem="3J1-Qe-35o" firstAttribute="leading" secondItem="qR3-k6-Uze" secondAttribute="leading" id="yUZ-6V-0RU"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="0WD-1Q-it5" userLabel="Date Stack">
+                                                        <rect key="frame" x="0.0" y="271" width="355" height="241.5"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="VUj-Kf-6aP" userLabel="Due Date Stack">
+                                                                <rect key="frame" x="0.0" y="0.0" width="355" height="20.5"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ZN-RP-zrB" userLabel="Due Date Lbl">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="177.5" height="20.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rh0-KZ-1aY" userLabel="Date Lbl">
+                                                                        <rect key="frame" x="177.5" y="0.0" width="177.5" height="20.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="nLg-J2-6x8" userLabel="Due Date Picker">
+                                                                <rect key="frame" x="0.0" y="25.5" width="355" height="216"/>
+                                                                <connections>
+                                                                    <action selector="dueDatePickerValueChanged:" destination="JuU-8f-KCd" eventType="valueChanged" id="qid-JV-fyn"/>
+                                                                </connections>
+                                                            </datePicker>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="nLg-J2-6x8" firstAttribute="leading" secondItem="0WD-1Q-it5" secondAttribute="leading" id="J9f-cZ-D56"/>
+                                                            <constraint firstAttribute="trailing" secondItem="nLg-J2-6x8" secondAttribute="trailing" id="lqP-GS-8Rq"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ae3-r2-f7f" userLabel="Notes Stack">
+                                                        <rect key="frame" x="0.0" y="526.5" width="355" height="34"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Notes" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yb6-da-Xj5" userLabel="Notes TxtFld">
+                                                                <rect key="frame" x="0.0" y="0.0" width="355" height="34"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                                                                        <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="notesChange:" destination="JuU-8f-KCd" eventType="editingChanged" id="tTr-LT-IRu"/>
+                                                                </connections>
+                                                            </textField>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="Yb6-da-Xj5" firstAttribute="leading" secondItem="ae3-r2-f7f" secondAttribute="leading" id="3as-Q8-zKc"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Yb6-da-Xj5" secondAttribute="trailing" id="JBP-cx-3bU"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="YFR-Fr-7OF" userLabel="Add to Calendar Stack">
+                                                        <rect key="frame" x="0.0" y="574" width="355" height="31"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add to Calendar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRi-Fl-oTt" userLabel="Add to Calendar Lbl">
+                                                                <rect key="frame" x="0.0" y="0.0" width="123.5" height="31"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Ux-9j-Jbi" userLabel="Add to Calendar Switch">
+                                                                <rect key="frame" x="306" y="0.0" width="51" height="31"/>
+                                                            </switch>
+                                                        </subviews>
+                                                    </stackView>
                                                 </subviews>
                                             </stackView>
-                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="nLg-J2-6x8" userLabel="Due Date Picker">
-                                                <rect key="frame" x="0.0" y="25.5" width="355" height="216"/>
-                                                <connections>
-                                                    <action selector="dueDatePickerValueChanged:" destination="JuU-8f-KCd" eventType="valueChanged" id="qid-JV-fyn"/>
-                                                </connections>
-                                            </datePicker>
                                         </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstItem="nLg-J2-6x8" firstAttribute="leading" secondItem="0WD-1Q-it5" secondAttribute="leading" id="J9f-cZ-D56"/>
-                                            <constraint firstAttribute="trailing" secondItem="nLg-J2-6x8" secondAttribute="trailing" id="lqP-GS-8Rq"/>
+                                            <constraint firstAttribute="trailing" secondItem="jXZ-qt-PPV" secondAttribute="trailing" constant="10" id="Iaa-hc-jH0"/>
+                                            <constraint firstItem="jXZ-qt-PPV" firstAttribute="leading" secondItem="4Kc-jq-JDD" secondAttribute="leading" constant="10" id="cHH-fi-qKT"/>
+                                            <constraint firstItem="jXZ-qt-PPV" firstAttribute="top" secondItem="4Kc-jq-JDD" secondAttribute="top" constant="10" id="iWb-cm-tIZ"/>
+                                            <constraint firstAttribute="bottom" secondItem="jXZ-qt-PPV" secondAttribute="bottom" constant="10" id="oWB-sk-ldL"/>
+                                            <constraint firstAttribute="height" constant="625" id="peb-T7-idn"/>
                                         </constraints>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ae3-r2-f7f" userLabel="Notes Stack">
-                                        <rect key="frame" x="0.0" y="519.5" width="355" height="34"/>
-                                        <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Notes" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yb6-da-Xj5" userLabel="Notes TxtFld">
-                                                <rect key="frame" x="0.0" y="0.0" width="355" height="34"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
-                                                        <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="notesChange:" destination="JuU-8f-KCd" eventType="editingChanged" id="tTr-LT-IRu"/>
-                                                </connections>
-                                            </textField>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="Yb6-da-Xj5" firstAttribute="leading" secondItem="ae3-r2-f7f" secondAttribute="leading" id="3as-Q8-zKc"/>
-                                            <constraint firstAttribute="trailing" secondItem="Yb6-da-Xj5" secondAttribute="trailing" id="JBP-cx-3bU"/>
-                                        </constraints>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="YFR-Fr-7OF" userLabel="Add to Calendar Stack">
-                                        <rect key="frame" x="0.0" y="566" width="355" height="31"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add to Calendar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRi-Fl-oTt" userLabel="Add to Calendar Lbl">
-                                                <rect key="frame" x="0.0" y="0.0" width="123.5" height="31"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Ux-9j-Jbi" userLabel="Add to Calendar Switch">
-                                                <rect key="frame" x="306" y="0.0" width="51" height="31"/>
-                                            </switch>
-                                        </subviews>
-                                    </stackView>
+                                    </view>
                                 </subviews>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstItem="4Kc-jq-JDD" firstAttribute="trailing" secondItem="cLl-AF-dMg" secondAttribute="trailing" id="2AK-Ze-7pO"/>
+                                    <constraint firstItem="4Kc-jq-JDD" firstAttribute="bottom" secondItem="cLl-AF-dMg" secondAttribute="bottom" id="3gT-Hq-lOV"/>
+                                    <constraint firstItem="4Kc-jq-JDD" firstAttribute="width" secondItem="xqz-6I-T9i" secondAttribute="width" id="3hB-4Q-4dg"/>
+                                    <constraint firstItem="4Kc-jq-JDD" firstAttribute="top" secondItem="cLl-AF-dMg" secondAttribute="top" id="NB2-RF-YzM"/>
+                                    <constraint firstItem="4Kc-jq-JDD" firstAttribute="leading" secondItem="cLl-AF-dMg" secondAttribute="leading" id="Ow3-Ds-KG6"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="cLl-AF-dMg"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="xqz-6I-T9i"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="SW9-zo-YbQ" firstAttribute="bottom" secondItem="jXZ-qt-PPV" secondAttribute="bottom" constant="10" id="2SX-dA-uqf"/>
-                            <constraint firstItem="jXZ-qt-PPV" firstAttribute="top" secondItem="SW9-zo-YbQ" secondAttribute="top" constant="10" id="2fe-yc-whR"/>
-                            <constraint firstItem="jXZ-qt-PPV" firstAttribute="leading" secondItem="SW9-zo-YbQ" secondAttribute="leading" constant="10" id="aeQ-n4-REt"/>
-                            <constraint firstItem="SW9-zo-YbQ" firstAttribute="trailing" secondItem="jXZ-qt-PPV" secondAttribute="trailing" constant="10" id="oCX-Ep-iEZ"/>
+                            <constraint firstItem="SW9-zo-YbQ" firstAttribute="bottom" secondItem="PKt-Y8-Kel" secondAttribute="bottom" id="9iM-fT-nee"/>
+                            <constraint firstItem="PKt-Y8-Kel" firstAttribute="top" secondItem="SW9-zo-YbQ" secondAttribute="top" id="ezT-a5-uNC"/>
+                            <constraint firstItem="SW9-zo-YbQ" firstAttribute="trailing" secondItem="PKt-Y8-Kel" secondAttribute="trailing" id="k9E-6j-JCW"/>
+                            <constraint firstItem="PKt-Y8-Kel" firstAttribute="leading" secondItem="SW9-zo-YbQ" secondAttribute="leading" id="otW-Sr-Qc8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SW9-zo-YbQ"/>
                     </view>

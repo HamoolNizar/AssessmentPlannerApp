@@ -39,7 +39,7 @@ public class Calculations {
         var percentage = 100
         
         if elapsed > 0 {
-            percentage = Int(100 - ((remaining / elapsed) * 100))
+            percentage = 100 - Int(100 - ((remaining / elapsed) * 100))
         }
         
         return percentage
